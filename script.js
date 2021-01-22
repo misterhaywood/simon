@@ -6,9 +6,8 @@ let turn = document.getElementsByTagName('h2')[0];
 
 let allCells = document.querySelectorAll('.rbyg')
 
-allCells.forEach(e => e.addEventListener('mousedown', changeOnClick(e)))
-
-allCells.forEach(e => e.addEventListener('mouseup', (e)=>console.log(e)))
+allCells.forEach(e => e.addEventListener('mousedown', e => e.classList.toggle('clicked')))
+allCells.forEach(e => e.addEventListener('mouseup', e => e.classList.toggle('clicked')))
 
 let count = 0;
 
@@ -27,16 +26,11 @@ function getRandomColor() {
     return buttons[randomNumber];
 }
 
-function changeOnClick(event){
-    event.style.opacity = 0.5
+let moves = [];
+for (let i = 0; i < 10; i++) {
+    moves.push(getRandomColor());
+    console.log(moves)
 }
-
-function revertBackOnClick(event){
-    console.log(event)
-    event.style.opacity = 1
-}
-
-console.log(getRandomColor());
 
 function runGame(event) {
     count++;
@@ -46,6 +40,7 @@ function runGame(event) {
     if (player == 'blue') {
         computerMoves.push(this.id)
         changeOnClick(this)
+        // console.log(`computerMoves: ${computerMoves}`)
 
         player = 'red'
         turn.innerText = "My Turn"
@@ -53,10 +48,9 @@ function runGame(event) {
     // players' turn
     else if (player == 'red') {
         for (let i = 0; i < computerMoves.length; i++) {
-            console.log(this.id)
-            console.log(`before ${playerMoves}`)
             playerMoves.push(this.id)
-            console.log(`after ${playerMoves}`)
+            // console.log(`playerMoves: ${playerMoves}`)
+
         }
 
 
@@ -65,17 +59,17 @@ function runGame(event) {
         playerMoves = [];
     }
 
-    console.log(computerMoves, playerMoves);
+    // console.log(computerMoves, playerMoves);
     // checkWinner()
 }
 
-function checkWinner(){
-    if (computerMoves.length > 0){
-        if (computerMoves == playerMoves) {
-            console.log(computerMoves, playerMoves);
-        }
-    }
-}
+// function checkWinner(){
+//     if (computerMoves.length > 0){
+//         if (computerMoves == playerMoves) {
+//             console.log(computerMoves, playerMoves);
+//         }
+//     }
+// }
 
 function reset(){
     count = 0;
