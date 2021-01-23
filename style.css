@@ -1,5 +1,5 @@
 body {
-    background: gray;
+    background: whitesmoke;
 }
 
 h1, h2, button {
@@ -8,23 +8,28 @@ h1, h2, button {
 
 .blue {
     background-color: blue;
+    border-radius: 0 0 100% 0;
 }
 .red {
     background-color: red;
+    border-radius: 0 100% 0 0;
+
 }
 .green {
     background-color: green;
+    border-radius: 100% 0 0 0;
+
 }
 .yellow {
     background-color: yellow;
+    border-radius: 0 0 0 100%;
 }
 
 .clicked {
-    opacity: .5;
+    opacity: .3;
 }
 
 .container {
-    border: 2px solid blue;
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin: 0 20%;
