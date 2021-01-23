@@ -1,22 +1,20 @@
-
 let computerMoves = [];
 let playerMoves = [];
 let player = 'blue'
 let padToFlash;
 let turn = document.getElementsByTagName('h2')[0];
-
+let buttons = ['green', 'red', 'yellow', 'blue']
 let allPads = document.querySelectorAll('.pad')
 
 allPads.forEach(e => e.addEventListener('mousedown', e => e.target.classList.toggle('clicked')))
 allPads.forEach(e => e.addEventListener('mouseup', e => e.target.classList.toggle('clicked')))
 
 function getRandomColor() {
-    let buttons = ['green', 'red', 'yellow', 'blue']
     let randomNumber = Math.floor(Math.random() * Math.floor(4));
     return buttons[randomNumber];
 }
 
-let count = 1;
+let count = 0;
 
 let moves = [];
 function getMoves(){
@@ -25,28 +23,26 @@ function getMoves(){
   }
 }
 
+computerMoves = moves.slice(0, count);
+
 function removeClass(k){
   let removeClass = setTimeout(function(){
-    console.log(moves[k])
-    let thing = document.querySelector(`#${moves[k]}`).classList.remove('clicked')
-    console.log(`remove Class`)
-  }, (k+1)*800)
+    let thing = document.querySelector(`#${computerMoves[k]}`).classList.remove('clicked')
+  }, (k+1)*700)
   return removeClass;
 }
 
 function addClass(k){
   let addClass = setTimeout(function(){
-    document.querySelector(`#${moves[k]}`).classList.add('clicked')
-    console.log(`add Class ${k}`)
+    document.querySelector(`#${computerMoves[k]}`).classList.add('clicked')
   }, k*1000)
   return addClass;
 }
 
 let theTimeout;
 function highlightPad (){
-  for (let k = 0; k < moves.length; k++) {
+  for (let k = 0; k < computerMoves.length; k++) {
     addClass(k)
-
     removeClass(k)
     setTimeout(() => console.log('jelly'), 500)
   }
@@ -58,7 +54,10 @@ function playSequence(e) {
 
   getMoves();
   highlightPad();
+  count++
   console.log(moves)
+  console.log(count)
+
 }
 
 let startButton = document.querySelector('button');
