@@ -16,7 +16,7 @@ function getRandomColor() {
     return buttons[randomNumber];
 }
 
-let count = 0;
+let count = 1;
 
 let moves = [];
 function getMoves(){
@@ -25,22 +25,30 @@ function getMoves(){
   }
 }
 
-function removeClass(){
-  let aVariableWhatever = setTimeout(function(){
-    padToFlash.classList.remove('clicked')
-  }, 1000)
-  return aVariableWhatever;
+function removeClass(k){
+  let removeClass = setTimeout(function(){
+    console.log(moves[k])
+    let thing = document.querySelector(`#${moves[k]}`).classList.remove('clicked')
+    console.log(`remove Class`)
+  }, (k+1)*800)
+  return removeClass;
+}
+
+function addClass(k){
+  let addClass = setTimeout(function(){
+    document.querySelector(`#${moves[k]}`).classList.add('clicked')
+    console.log(`add Class ${k}`)
+  }, k*1000)
+  return addClass;
 }
 
 let theTimeout;
 function highlightPad (){
   for (let k = 0; k < moves.length; k++) {
-    padToFlash = document.querySelector(`#${moves[k]}`)
-    console.log(padToFlash)
+    addClass(k)
 
-    padToFlash.classList.add('clicked')
-    console.log(padToFlash)
-    removeClass()
+    removeClass(k)
+    setTimeout(() => console.log('jelly'), 500)
   }
   clearInterval(theTimeout)
 }
@@ -51,7 +59,6 @@ function playSequence(e) {
   getMoves();
   highlightPad();
   console.log(moves)
-  moves = [];
 }
 
 let startButton = document.querySelector('button');
