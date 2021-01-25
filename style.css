@@ -2,8 +2,12 @@ body {
     background: whitesmoke;
 }
 
-h1, h2, button {
+h1, h2, h3, div, button {
     text-align: center;
+}
+
+button {
+    margin-top: 20px;;
 }
 
 .blue {
@@ -38,5 +42,5 @@ h1, h2, button {
 .pad {
     width: 100%;
     height: 200px;
-    border: 2px solid black
+    border: 2px solid black;    
 }
