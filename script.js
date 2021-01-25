@@ -70,7 +70,6 @@ let handleClick = (pad) => {
   if (playerSequence[i] !== sequence[i]) {
     h2.innerText = `Game Over`;
     h3.innerText = `Press Start to try again`;
-    console.log(playerSequence, sequence);
     resetGame();
     return;
   }
@@ -93,7 +92,9 @@ let handleClick = (pad) => {
 
 container.addEventListener('click', event => {
   let pad = event.target.id
-  if (pad) handleClick(pad);
+  if (pad) {
+    handleClick(pad)
+  };
 });
 
 startButton.addEventListener('click', nextRound);
