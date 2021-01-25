@@ -2,8 +2,14 @@ let pads = ['green', 'red', 'yellow', 'blue'];
 let sequence = [];
 let playerSequence = [];
 let round = 0;
-let h2 = document.querySelector('h2')
-let h3 = document.querySelector('h3')
+
+let h2 = document.createElement('h2')
+let h3 = document.createElement('h3')
+
+document.body.appendChild(h2)
+document.body.appendChild(h3)
+h2 = document.querySelector('h2')
+h3 = document.querySelector('h3')
 
 
 let allPads = document.querySelectorAll('.pad');
@@ -32,6 +38,7 @@ let animatePad = (color) => {
 
 let turnBanner = (level) => {
   h2.innerText = `Round: ${level}`;
+  h3.innerText = `Your turn`
 }
 
 let nextMove = () => {
@@ -48,6 +55,9 @@ let playRound = (nextSequence) => {
 }
 
 function nextRound() {
+  h2.innerText = `My Turn`;
+  h3.innerText = `Stand by`;
+
   round++;
   let nextSequence = [...sequence];
   nextSequence.push(nextMove());
@@ -84,10 +94,10 @@ let handleClick = (pad) => {
     playerSequence = [];
 
     setTimeout(() => nextRound(), 1000);
+
     return;
   }
 
-  h2.innerText = `Your turn`;
 }
 
 container.addEventListener('click', event => {
