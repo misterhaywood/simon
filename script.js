@@ -37,8 +37,8 @@ let animatePad = (color) => {
 }
 
 let turnBanner = (level) => {
-  h2.innerText = `Round: ${level}`;
-  h3.innerText = `Your turn`
+  h2.innerText = `Your turn`;
+  h3.innerText = `Round: ${level}`
 }
 
 let nextMove = () => {
@@ -54,7 +54,7 @@ let playRound = (nextSequence) => {
   });
 }
 
-function nextRound() {
+let newRound = () => {
   h2.innerText = `My Turn`;
   h3.innerText = `Stand by`;
 
@@ -66,7 +66,7 @@ function nextRound() {
   sequence = [...nextSequence];
   setTimeout(() => {
     turnBanner(round);
-  }, round * 600 + 1000);
+  }, round * 700 + 1000);
 }
 
 let handleClick = (pad) => {
@@ -85,7 +85,7 @@ let handleClick = (pad) => {
   }
 
   if (playerSequence.length === sequence.length) {
-    if (playerSequence.length === 20) {
+    if (playerSequence.length === 10) {
       h2.innerText = 'Winner Winner!';
       h3.innerText = 'Chicken Dinner!';
       return
@@ -93,7 +93,7 @@ let handleClick = (pad) => {
 
     playerSequence = [];
 
-    setTimeout(() => nextRound(), 1000);
+    setTimeout(() => newRound(), 1000);
 
     return;
   }
@@ -107,4 +107,4 @@ container.addEventListener('click', event => {
   };
 });
 
-startButton.addEventListener('click', nextRound);
+startButton.addEventListener('click', newRound);
