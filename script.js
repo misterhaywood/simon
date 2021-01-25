@@ -75,8 +75,6 @@ let handleClick = (pad) => {
   animatePad(pad)
   sound.play();
 
-  let movesLeft = sequence.length - playerSequence.length;
-
   if (playerSequence[i] !== sequence[i]) {
     h2.innerText = `Game Over`;
     h3.innerText = `Press Start to try again`;
